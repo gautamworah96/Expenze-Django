@@ -1,0 +1,75 @@
+
+{% extends "base_visitor.html" %}
+{% load i18n %}
+
+{% block body %}
+
+
+<form method="post" action="{% url 'auth_login' %}">
+  {% csrf_token %}
+
+
+
+
+
+<br>
+<br><br><br><br>
+
+
+<div class="form-group">
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+
+                    <div class="panel-body">
+
+                    {%  if form.errors %}
+                        <strong>
+                         <span class="text-danger small">
+                        Please enter correct username and password
+                        </span>
+                        </strong>
+                    {% endif %}
+
+                        <h3>Create a New Account</h3>
+                        {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
+
+
+                        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+
+
+                            {%  include 'form-template.html' %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-sucess btn btn-lg btn-primary btn-block" >Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+                        </form>
+                    </div>
+
+    <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+   </div>
+        </div>
+        </div>
+
+</div>
+
+</form>
+
+
+
+{% endblock %}

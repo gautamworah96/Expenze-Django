@@ -1,0 +1,782 @@
+
+{% extends 'Main/base.html' %}
+
+
+{% block body %}
+ <head><style>
+     @charset "utf-8";
+/* CSS Document */
+
+
+tr.linefinances1 td, tr.linefinances2 td{
+	padding:5px;
+	height:16px;
+
+	background: -moz-linear-gradient(top,  #eeeeee 0%, #f8f8f8 100%); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#f8f8f8)); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(top,  #eeeeee 0%,#f8f8f8 100%); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top,  #eeeeee 0%,#f8f8f8 100%); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top,  #eeeeee 0%,#f8f8f8 100%); /* IE10+ */
+
+	background: linear-gradient(to bottom,  #eeeeee 0%,#f8f8f8 100%); /* W3C */
+
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#f8f8f8',GradientType=0 ); /* IE6-9 */
+
+}
+
+tr.footfinances td{
+
+	background-color:#EEEEEE;
+	border-top:2px solid #CCC;
+}
+
+tr.headerfinances td{
+	padding:5px;
+	background-color:#EEEEEE;
+	border-bottom:2px solid #CCC;
+}
+.first_col_artist {
+    padding: 0;
+    width: 223px;
+}
+.second_col_artist {
+    padding-left: 15px;
+}
+.artist_data {
+    background: url("images/back_artist_data.png") no-repeat scroll 0 0 transparent;
+    margin-bottom: 0;
+    padding: 5px 15px 5px 5px;
+}
+.artist_data_bottom {
+    background: url("images/back_artist_data_bottom.png") no-repeat scroll 0 0 transparent;
+    height: 4px;
+    margin-bottom: 5px;
+}
+span.cat_tag {
+    border-radius: 2px 2px 2px 2px;
+    font: 9px verdana,arial,sans-serif;
+    padding: 2px 5px;
+
+	display:inline-block;
+	text-align:center;
+	width: 90%;
+}
+
+tr.linefinances1:hover a.delete_button, tr.linefinances2:hover a.delete_button{
+	background:url(images/delete_gray.png) no-repeat;
+	width:16px;
+	height:16px;
+	display:inline-block;
+}
+
+tr.linefinances1:hover a.delete_button:hover, tr.linefinances2:hover a.delete_button:hover{
+	background:url(images/delete.png) no-repeat;
+
+}
+
+tr.linefinances1:hover a.edit_button, tr.linefinances2:hover a.edit_button{
+	background:url(images/edit_gray.png) no-repeat;
+	width:16px;
+	height:16px;
+	display:inline-block;
+}
+
+tr.linefinances1:hover a.edit_button:hover, tr.linefinances2:hover a.edit_button:hover{
+	background:url(images/edit.png) no-repeat;
+
+}
+
+
+.artist_data h3{
+	font-size: 16px;
+    font-weight: normal;
+    line-height: 100%;
+    margin: 0 0 5px;
+    padding: 0;
+
+	border-bottom: 1px solid #ECECEC;
+
+}
+
+.balance{
+	border-top:1px solid #CCC;
+	padding-top:5px;
+
+}
+
+/* AMOUNT FORMAT */
+/*
+.amount_positive{
+	color:#060;
+}
+.amount_negative{
+	color:#900;
+}*/
+
+span.amount{
+	color:#FFF;
+	border-radius: 2px 2px 2px 2px;
+	font: 9px verdana,arial,sans-serif;
+	padding: 2px 5px;
+	display: inline-block;
+
+	width: 70px;
+	text-align:right;
+}
+.amount_positive{
+	background-color:#5cb85c;
+}
+.amount_negative{
+	background-color:#d9534f;
+}
+span.sign_box{
+	float:left;
+}
+.amount_zero{
+	background-color:#777;
+}
+
+.tax_amount{
+	border-radius: 2px 2px 2px 2px;
+	font: 9px verdana,arial,sans-serif;
+	padding: 2px 5px;
+	display: inline-block;
+	text-align:right;
+	background-color:#DDD;
+	width: 45px;
+}
+
+input.tax_deductable_form{
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+select#category_id{
+
+}
+select#project_id{
+
+}
+
+input#date_in, input#date_out{
+
+}
+
+.radio.btn-group input[type=radio] {
+display: none;
+}
+
+div.radio {
+display: none;
+}
+
+.control-group .radio{
+	padding-left:0px;
+}
+
+#sign_group{
+	float: left;
+	margin: 0px;
+	margin-right: 5px;
+}
+
+.option_buttons{
+	width:39px;
+}
+
+.item_name_details{
+	font-weight:bold;
+}
+
+.text-justified{
+	text-align:justify;
+}
+
+.modal-body{
+	overflow:auto;
+}
+
+.container-cat-header{
+	display:inline-block;
+	width:65%;
+}
+
+.container-short-new-cat{
+	display:inline-block;
+	width:30%;
+	text-align:right;
+}
+
+.short-new-cat{
+	text-decoration:none !important;
+}
+
+.btn_no_underline{
+	text-decoration:none !important;
+}
+
+.dlt-item{
+	color: #d9534f;
+}
+
+.dlt-item:hover{
+	text-decoration:underline;
+	color: #d9534f;
+}
+
+.icon-refresh:before{
+	content: "" !important;
+}
+
+.icon-download:before{
+	content: "" !important;
+}
+
+.icon-file:before{
+	content: "" !important;
+}
+
+.icon-ok:before{
+	content: "" !important;
+}
+
+.icon-list:before{
+	content: "" !important;
+}
+
+.icon-edit:before{
+	content: "" !important;
+}
+
+.icon-trash:before{
+	content: "" !important;
+}
+
+.icon-tag:before {
+	content: "" !important;
+}
+
+.table_wrapper{
+	width: 100%;
+}
+
+.items_table_responsive{
+  	width:100%;
+}
+
+.sumary-item-label{
+	display:inline-block;
+	width:35%;
+	padding-bottom:7px;
+}
+.sumary-item-amount{
+	display:inline-block;
+	width:60%;
+	text-align:right;
+}
+
+.cursor-pointer{
+	cursor:pointer;
+}
+
+.no-padding-actions{
+	padding-left:0 !important;
+}
+
+.right-space{
+	margin-right:10px;
+}
+
+.returnTo {
+	padding: 20px;
+	text-align: right;
+}
+
+/* New list style*/
+
+.cat-column {
+	width: 6px;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.fake-expand {
+	width: 1px;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.name-column {
+	text-align: left;
+	padding: 15px !important;
+	cursor: pointer;
+}
+
+.amount-column {
+	text-align: right !important;
+	padding: 15px !important;
+	cursor: pointer;
+}
+
+.name-div, .amount-div {
+	width: 100%;
+	font-size: 16px;
+}
+
+.amount-div {
+	white-space: nowrap;
+}
+
+.date-div, .tax-div {
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+.positive-amount {
+	font-weight: 500;
+	color: #5cb85c;
+}
+
+.negative-amount {
+	font-weight: 500;
+	color: #d9534f;
+}
+
+.zero-amount {
+	font-weight: 500;
+	color: #777;
+}
+
+.cat-name , .acc-name{
+	font-size: 11px;
+}
+
+.cat-name {
+	font-weight: bolder;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.edit-td {
+	padding-left: 5px !important;
+	padding-right: 0 !important;
+	padding-top: 17px !important;
+}
+
+.total-title-tfoot, .total-global-tfoot {
+	padding: 15px !important;
+	text-align: right !important;
+	font-size: 16px;
+}
+
+.spinner {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    background: url(images/spinner-rosetta-gray-32x32.gif) no-repeat 0 0;
+}
+
+@media (max-width: 767px) {
+	.col-sm-6 > .input-group {
+		margin-bottom: 10px;
+	}
+	.col-sm-3 > .input-group {
+		margin-bottom: 10px;
+	}
+}
+
+@media (max-width: 500px) {
+	.edit-td {
+		width: 20px !important;
+	}
+	.edit-icon-no-padding {
+		padding-left: 0 !important;
+	}
+}
+
+@media (min-width: 500px) {
+	.edit-td {
+		width: 40px !important;
+	}
+}
+
+@media (min-height: 600px) {
+	.modal-body {
+
+	    max-height: 535px !important;
+
+	}
+}
+
+.tt-menu {
+	width: 100%;
+    margin: 12px 0;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.tt-suggestion.tt-cursor{
+	color: #fff;
+	background-color: #0097cf;
+}
+
+.resume-number {
+	padding: 10px;
+	font-size: 18px;
+	font-weight: 300;
+	line-height: 18px;
+	color: #FFFFFF;
+	text-align: right;
+	padding-top: 15px;
+}
+
+.resume-income {
+	background: #5cb85c;
+}
+
+.resume-outcome {
+	background: #d9534f;
+}
+
+.resume-balance {
+	background: #eee;
+}
+
+.resume-balance-positive {
+	color: #5cb85c;
+}
+
+.resume-balance-negative {
+	color: #d9534f;
+}
+
+.resume-balance-zero {
+	color: #777;
+}
+
+.resume-title {
+	padding-top: 5px;
+	font-size: 80%;
+	display: block;
+}
+
+.summary-item {
+	margin-bottom: 10px;
+}
+
+.summary-well {
+	margin-bottom: 20px;
+}
+
+.summary-number {
+	white-space: nowrap;
+	font-size: 25px;
+}
+
+.cat-acc-header {
+	padding-bottom: 5px;
+}
+
+.categories-well, .accounts-well, .filter-well, .new-item-well {
+	padding: 10px;
+	background: rgb(250,250,250);
+	margin-bottom: 20px;
+}
+
+.glyphicon {
+	color: black;
+}
+
+.cat-color {
+	width: 6px;
+	height: 100%;
+	display: inline-block;
+}
+
+.cat-list-name {
+	height: 100%;
+	display: inline-block;
+	vertical-align: super;
+}
+
+.cat-list-namebs2 {
+	height: 100%;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.cat-list-name-span, .cat-list-name-span:link, .cat-list-name-span:visited, .cat-list-name-span:hover, .cat-list-name-span:active {
+	vertical-align: super;
+	text-decoration: none;
+	color: black;
+}
+
+.no-decorate-link, .no-decorate-link:link, .no-decorate-link:visited, .no-decorate-link:hover, .no-decorate-link:active {
+	text-decoration: none;
+	color: black;
+}
+
+.form-select, .input-name, .input-name > span {
+	width: 100%;
+}
+
+.extref-vatid {
+	float: left;
+	clear: both;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.rec-select {
+	min-width: 48px;
+	margin-bottom: 5px;
+}
+
+.vat-id-input, .ext-ref-input {
+	width: 100% !important;
+}
+
+.description-input {
+	width: 100% !important;
+}
+
+.input-modal-margin {
+	margin-bottom: 10px;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0 !important;
+}
+
+.cat-list-row {
+	height: 45px;
+}
+
+.edit-cat-div {
+	padding-top: 6px;
+}
+
+.input-typeahead > span {
+	height: 30px !important;
+}
+
+.input-typeahead span input {
+	border-radius: 4px !important;
+}
+
+/*http://www.materialup.com/posts/material-design-box-shadows*/
+.shadow-box{
+	//background: #fff;
+	border-radius: 2px;
+
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.2s ease-in-out;
+}
+
+.shadow-box:hover {
+	//box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-box-2 {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-box-3 {
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-box-4 {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.shadow-box-5 {
+	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.noshadow-box {
+	border-radius: 2px;
+	transition: all 0.2s ease-in-out;
+}
+
+.datepicker.dropdown-menu{
+	z-index: 10000;
+}
+
+.highlight_item td {
+
+  	background-color: #d9edf7;
+}
+
+.highlight_item_fade td{
+	transition: background-color 2s ease;
+	background-color: transparent;
+}
+#uncolapse_new_form {
+	height: 40px;
+}
+
+#uncolapse_new_form_icon {
+	color: white;
+}
+
+.export_button{
+	margin-bottom: 5px;
+}
+
+.input-border {
+	border-radius: 4px !important;
+}
+
+.loadMoreBtn {
+	color: #777 !important;
+}
+
+.select-order-by {
+	width: 100%;
+}
+
+.select-order-by-label {
+	padding-top: 5px;
+}
+
+.peu-edit-catacc {
+	background-color: #f5f5f5;
+	border-top: 1px solid #e5e5e5;
+	padding: 17px 20px 18px;
+}
+ </style></head> <body>
+   <br><br>{% if balances %}{% for balance in balances %}
+        <div style="text-align: center;">  <h1 class="page-header">DashBoard</h1></div>
+
+                    <div class="row"> <!-- summary -->
+                        <div class="summary-well container-fluid">
+<div class="row" style="margin-left:270px;">
+    <div class="col-sm-3 hidden-xs summary-item noshadow-box resume-number resume-income">
+        <span class="summary-number" id="summary_income_num">{{ balance.expense }}</span>
+        <span class="resume-title">Income</span>
+    </div>
+
+
+    <div class="col-sm-3 hidden-xs summary-item noshadow-box resume-number resume-outcome">
+        <span class="summary-number" id="summary_outcome_num">{{ balance.income }}</span>
+        <span class="resume-title">Outcome</span>
+    </div>
+
+    <div id="resume-background-balance" class="col-sm-3 summary-item noshadow-box resume-number resume-balance resume-balance-zero">
+        <span class="summary-number" id="summary_balance_num">{{ balance.income }}</span>
+        <span class="resume-title">Balance</span>
+    </div>
+
+</div>
+</div>
+{% endfor %}
+   {% else %}
+     <div style="text-align: center;">  <h1 class="page-header">DashBoard</h1></div>
+
+                    <div class="row"> <!-- summary -->
+                        <div class="summary-well container-fluid">
+<div class="row" style="margin-left:270px;">
+    <div class="col-sm-3 hidden-xs summary-item noshadow-box resume-number resume-income">
+        <span class="summary-number" id="summary_income_num">0</span>
+        <span class="resume-title">Income</span>
+    </div>
+
+
+    <div class="col-sm-3 hidden-xs summary-item noshadow-box resume-number resume-outcome">
+        <span class="summary-number" id="summary_outcome_num">0</span>
+        <span class="resume-title">Outcome</span>
+    </div>
+
+    <div id="resume-background-balance" class="col-sm-3 summary-item noshadow-box resume-number resume-balance resume-balance-zero">
+        <span class="summary-number" id="summary_balance_num">0</span>
+        <span class="resume-title">Balance</span>
+    </div>
+
+</div>
+</div>
+                    {% endif %}
+
+                    </div>
+          <div class="row ">
+		  <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <a href="{% url "Main:exp_form" %}">
+               <img src="../../static/Main/Images/add.jpg" width="200" height="200" class="img-circle" alt="Generic placeholder thumbnail"></a>
+              <div style="text-align:center;"><h4>Add Expense/Income</h4></div>
+              
+            </div>
+            <div class="col-sm-2 ">
+                <a href="{% url 'Main:addloanpremium' %}">
+              <img src="../../static/Main/Images/loan.jpg" width="200" height="200" class="img-circle" alt="Generic placeholder thumbnail"></a>
+             <div style="text-align:center;"><h4>Loans and Premiums</h4></div>
+             
+            </div>
+            <div class="col-sm-2">
+                <a href="{% url 'Main:getExpense' %}">
+              <img src="../../static/Main/Images/graph.jpg" width="200" height="200" class="img-circle"alt="Generic placeholder thumbnail"></a>
+             <div style="text-align: center;"><h4>Reports</h4></div>
+              
+            </div>
+            <div class="col-sm-2">
+                <a href="{% url 'Main:profile' %}">
+              <img src="../../static/Main/Images/profile.png" width="200" height="200" class="img-circle" alt="Generic placeholder thumbnail"></a>
+             <div style="text-align: center;"> <h4>Profile</h4></div>
+              
+            </div>
+			<div class="col-sm-2"></div>
+          </div>
+
+		  
+<br>		  
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+         <div style="text-align: center;"> <h2 class="sub-header">Recent Transactions</h2></div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Sr No.</th>
+                  <th>Name</th>
+                  <th>Category/Source</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                    <th> Details </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% include 'Main/table_template_dash.html' %}
+              </tbody>
+            </table>
+          </div>
+    <a href="{% url 'Main:transactions' %}" >All Records</a>
+        </div>
+      </div>
+    </div>
+	</div>
+	<div class="col-sm-2"></div>
+	</div>
+    </body>
+
+{% endblock %}

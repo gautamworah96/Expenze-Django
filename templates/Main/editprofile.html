@@ -1,0 +1,159 @@
+
+
+{% extends 'Main/base.html' %}
+
+{% block body %}<br><br><br><br><br><br>
+ {% for userdetail in userdetails %}
+        <form class="form-horizontal" role="form" method="post" href="{% url 'Main:update' userdetail.pk %}" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="{{ userdetail.photo.url }}" >
+          <h6>Upload a different photo...</h6>
+
+          <input type="file" class="form-control">
+        </div>
+      </div>
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+
+        <h3>Personal info</h3>
+
+        <form class="form-horizontal" role="form" method="post" href="{% url 'Main:update' userdetail.pk %}" enctype="multipart/form-data">
+
+            <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="{{user.email}}" readonly>
+            </div>
+          </div>
+            <div class="form-group">
+            <label class="col-md-3 control-label">Username:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="{{user.username}}">
+            </div>
+          </div>
+
+
+
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="{{user.fname}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="{{user.lname}}">
+            </div>
+          </div>
+
+
+
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Company:</label>
+            <div class="col-lg-8">
+
+                    <input class="form-control" type="text" value="{{ userdetail.company_name }}">
+
+            </div>
+          </div>
+
+
+
+            <div class="form-group">
+            <label class="col-md-3 control-label">Position:</label>
+            <div class="col-md-8">
+
+                    <input class="form-control" type="text" value="{{userdetail.occupation}}">
+
+            </div>
+          </div>
+
+
+
+             <div class="form-group">
+            <label class="col-md-3 control-label">Date of Joining:</label>
+            <div class="col-md-8">
+
+                    <input class="form-control" type="date" value="{{ userdetail.hire_date }}">
+
+            </div>
+          </div>
+
+            <div class="form-group">
+            <label class="col-md-3 control-label"> Company Address:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="{{ userdetail.address }}">
+            </div>
+          </div>
+
+            <div class="form-group">
+            <label class="col-md-3 control-label"> Yearly Package:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="{{ userdetail.yearly_package }}">
+            </div>
+          </div>
+
+            <div class="form-group">
+            <label class="col-md-3 control-label"> PF:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="{{ userdetail.pf }}">
+            </div>
+          </div>
+
+            <div class="form-group">
+            <label class="col-md-3 control-label"> Phone No:(primary)</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" value="{{ userdetail.phone_no }}">
+            </div>
+          </div>
+
+
+
+            <div class="form-group">
+            <label class="col-md-3 control-label">DOB:</label>
+            <div class="col-md-8">
+
+                    <input class="form-control" type="date" value="{{ userdetail.dob }}">
+
+            </div>
+          </div>
+
+
+
+
+            <div class="form-group">
+            <label class="col-md-3 control-label"> Permanent Address:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="{{ userdetail.res_address }}">
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Save"> </form>
+              <span></span>
+              <a type="submit" href="{% url 'Main:profile' %}" class="btn btn-default" >Cancel</a>
+            </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<hr>
+{% endfor %}
+    </form>
+{% endblock %}
